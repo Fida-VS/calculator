@@ -1,14 +1,64 @@
 import logo from './logo.svg';
 import './App.css';
 import { date } from './constants';
+import { createElement } from 'react';
 
 
-//Декларативный стиль
+ function CreateEls() {
+	return createElement(
+		'div',
+    { className: 'App' },
+    createElement(
+		'header',
+		{ className: 'App-header' },
+
+		createElement(
+			'img',
+			{
+				src: logo,
+				className: "App-logo",
+				alt: "logo"
+			  }
+		),
+		createElement(
+			'p',
+			 null,
+			 'Edit ',
+			 createElement('code', null, 'src/App.js'),
+			 ' and save to reload 2.'
+			 ),
+			createElement(
+				'a',
+				{
+					className: "App-link",
+					href: "https://reactjs.org",
+					target: "_blank",
+					rel: "noopener noreferrer",
+					children: "Learn React"
+				  }
+			),
+			createElement(
+				'p',
+				{
+					className: "App-year",
+				children: date.getFullYear()
+			        },
+
+			)
+		),
+	);
+};
+
+export default function App() {
+	return createElement(
+		CreateEls
+	);
+  }
 
 
-export const App = () => {
-	return (
-		<div className="App">
+
+
+/* <div className="App">
 			<header className="App-header">
 				<img src={logo} className="App-logo" alt="logo" />
 				<p>
@@ -24,10 +74,9 @@ export const App = () => {
 				</a>
 
 				<p>
-					{date.getFullYear()}</p>
+					{date.getFullYear()}
+					</p>
 			</header>
-		</div>
-	);
-};
+		</div> */
 
 
