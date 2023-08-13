@@ -8,6 +8,7 @@ import { useState } from 'react';
 export const App = () => {
 
 	const [displayValue, setDisplayValue] = useState(0);
+	const [colorValue, setColorValue] = useState(false);
 
 	const calculate = (num1, num2, op) => {
 
@@ -53,16 +54,18 @@ console.log(num2);
 const getNumberInDisplay = (el) => {
 
 if(el === 'c'){
+	setColorValue(false);
 	setDisplayValue(0)
 } else if(el === '='){
 
 	setDisplayValue(convertInNumbers(displayValue));
-
+    setColorValue(true);
 } else {
 
 	if(displayValue === 0){
 		setDisplayValue(displayValue + el)
 	} else {
+		setColorValue(false);
 		setDisplayValue(displayValue + String(el))
 	}
 
@@ -74,7 +77,7 @@ if(el === 'c'){
 
 		<div className={styles.calculator}>
 			<div className={styles.display}>
-				<div className={convertInNumbers ? styles.numbersField : styles.numbersFieldGreen}>{displayValue}</div>
+				<div className={colorValue ? styles.numbersFieldGreen : styles.numbersField}>{displayValue}</div>
 			</div>
 			<div className={styles.signs}>
 			{signs.map(( el ) => <button onClick={() => getNumberInDisplay(el)} className={styles.signsItem} key={el}>{el}</button>)}
